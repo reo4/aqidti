@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}" dir={{rtl ? 'rtl' : 'lrt'}}>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Aqidti</title>
+		<link rel="stylesheet" href="/assets/css/font-awesome.min.css" />
+		@if(rtl)
+		<link rel="stylesheet" href="/assets/css/bootstrap.rtl.min.css" />
+		<link rel="stylesheet" href="/assets/css/style.rtl.css" />
+		@else
+		<link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="/assets/css/style.css" />
+		@endif
+	</head>
+	<body>
+		@!section('body')
+
+		<script src="/assets/js/bootstrap.bundle.min.js"></script>
+		<script src="/assets/js/script.js"></script>
+	</body>
+</html>

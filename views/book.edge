@@ -1,0 +1,59 @@
+@layout('layouts/main')
+
+@section('body')
+<div id="header">
+	@!component('components/navbar', {
+		url: '/book/' + book.id,
+		lang,
+		data
+	})
+</div>
+
+<div id="selected-books-section">
+	<div class="section-content">
+		<div class="container">
+			<div class="row align-items-center">
+				<div class="col-xs-12 col-lg-6">
+					<img src="/assets/img/selected.jpg" alt />
+				</div>
+				<div class="col-xs-12 col-lg-6" js-col-download>
+					<div class="download-wrapper">
+						<a href="#" class="close-btn" onclick="closeDownload(event, this)">
+							<i class="fa fa-remove"></i>
+						</a>
+						<h2 class="download-title">{{book.name[lang]}}</h2>
+						<a href="{{book.pdf[lang]}}" target="_blank"  download class="download-pdf">{{data.download_format}} PDF</a>
+						{{--  <a href="/download/{{book.id}}" class="download-pdf">تنزيل بتنسيق PDF</a>  --}}
+					</div> 
+				</div>
+				<div class="col-xs-12 col-lg-6" js-parent-download>
+					<h3>{{book.name[lang]}}</h3>
+					<h5>{{data.author}}: {{book.author[lang]}}</h5>
+					<div class="details">
+						<span class="viewed"><i class="fa fa-eye"></i>{{book.reads_count}}</span>
+						<span class="download"><i class="fa fa-download"></i>{{book.downloads_count}}</span>
+					</div>
+					<div class="actions">
+						<button class="btn btn-primary btn-c btn-c-primary read-btn">{{data.read_btn}}</button>
+						<button onclick="download(event , this)" class="btn btn-light btn-c btn-i btn-c-light download-btn">
+							<i class="fa fa-download"></i>
+						</button>
+						<button class="btn btn-light btn-c btn-i btn-c-light share-btn">
+							<i class="fa fa-share-alt"></i>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+@include('partials/books.edge')
+
+@include('partials/feature-section')
+
+<div class="gap"></div>
+
+@include('partials/footer')
+
+@endsection

@@ -1,0 +1,45 @@
+
+@set('links', [
+  { locale: 'ar', label: 'العربية'},
+  { locale: 'en', label: 'English'},
+  { locale: 'fr', label: 'français'},
+  { locale: 'id', label: 'bahasa Indonesia'},
+  { locale: 'hi', label: 'हिन्दी'},
+  { locale: 'ru', label: 'русский'},
+  { locale: 'ur', label: 'اردو'},
+  { locale: 'ps', label: 'پښتو'},
+  { locale: 'bn', label: 'বাংলা'},
+  { locale: 'te', label: 'తగలోగ్'},
+  { locale: 'sw', label: 'kiswahili'},
+])
+<div class="container">
+  <div class="row align-items-center">
+    <div class="col"><a href="/{{lang !== 'ar' ? lang : ''}}">{{data.home_page_link}}</a></div>
+    <div class="col text-center">
+      <a href="/{{lang !== 'ar' ? lang : ''}}"><img class="logo" src="/assets/img/logo.png" alt="الرئيسية" height="150" /></a>
+    </div>
+    <div class="col text-end">
+      <div class="btn-group">
+        <button
+          type="button"
+          class="btn dropdown-toggle"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          {{data.link_label}}
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end p-0">
+          @each(link in links)
+            <li>
+              @if(link.locale === 'ar')
+                <a href="{{url}}" class="dropdown-item {{lang === link.locale && 'active'}}"><span>{{link.label}}</span></a>
+              @else
+                <a href="/{{link.locale}}{{url}}" class="dropdown-item {{lang === link.locale && 'active'}}"><span>{{link.label}}</span></a>
+              @endif          
+            </li>
+          @endeach
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

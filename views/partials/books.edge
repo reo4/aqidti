@@ -1,0 +1,44 @@
+<div id="books-section">
+	<div class="banner">
+		<h1>{{data.books}}</h1>
+		<p>{{data.read_and_download_books}}</p>
+	</div>
+	<div class="section-content">
+		<div class="container">
+			<div class="row">
+        @each(book in books)
+          <div class="col-xs-12 col-md-6 col-xxl-3">
+            <div class="book">
+              <a 
+                href="{{lang === 'ar' ? '' : '/' + lang}}/book/{{book.id}}"
+              class="book-cover"
+              style="background-image:url({{book.image}})"
+              >
+              </a>
+              <a href="#" class="book-title"><h4>{{book.name[lang]}}</h4></a>
+              <div class="book-author"><p>{{data.author}}: {{book.author[lang]}}</p></div>
+              <div class="details">
+                <span class="viewed"><i class="fa fa-eye"></i>{{book.reads_count}}</span>
+                <span class="download"><i class="fa fa-download"></i>{{book.downloads_count}}</span>
+              </div>
+              <div class="actions">
+                <a href="{{lang === 'ar' ? '' : '/' + lang}}/book/{{book.id}}" class="btn btn-primary btn-c btn-c-primary read-btn">{{data.read_btn}}</a>
+                <button class="btn btn-light btn-c btn-i btn-c-light download-btn">
+                  <i class="fa fa-download"></i>
+                </button>
+                <button class="btn btn-light btn-c btn-i btn-c-light share-btn">
+                  <i class="fa fa-share-alt"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        @endeach
+      </div>
+      <!--  <div class="row justify-content-center">
+        <div class="d-flex load-more-btn">
+          <button class="btn btn-outline-dark w-100">المزيد</button>
+        </div>
+      </div>  -->
+    </div>
+  </div>
+</div>

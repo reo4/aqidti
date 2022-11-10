@@ -1,0 +1,89 @@
+@layout('./layouts/main')
+
+
+@section('body')
+
+<div id="header">
+	@!component('components/navbar', {
+		url: '/',
+		lang,
+		data
+	})
+	<div class="container space">
+		<div class="row align-items-center">
+			<div class="col-lg-1 d-none d-lg-block"></div>
+			<div class="col-lg-6 col-xs-12 text-center text-lg-start">
+				<h1 class="title">{{data.title}}</h1>
+				<p class="description">{{data.description}}</p>
+				<ul class="states">
+					<li>
+						<p>9</p>
+						<p>{{data.states.books}}</p>
+					</li>
+					<li>
+						<p>11</p>
+						<p>{{data.states.language}}</p>
+					</li>
+					<li>
+						<p>578</p>
+						<p>{{data.states.read}}</p>
+					</li>
+					<li>
+						<p>440</p>
+						<p>{{data.states.download}}</p>
+					</li>
+				</ul>
+			</div>
+			<div class="col-lg-2 d-none d-lg-block"></div>
+			<div class="col-lg-3 text-center">
+				<img src="/assets/img/logo-2.png" alt />
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="selected-books-section">
+	<div class="banner">
+		<h1>{{data.chosen_books}}</h1>
+	</div>
+	<div class="section-content">
+		<div class="container">
+			<div class="row align-items-center">
+				<div class="col-xs-12 col-lg-6">
+					<img src="/assets/img/selected.jpg" alt />
+				</div>
+				<div class="col-xs-12 col-lg-6">
+					<h3>{{books[1].name[lang]}}</h3>
+					<h5>{{data.author}}: {{books[1].author[lang]}}</h5>
+					<div class="details">
+						<span class="viewed"><i class="fa fa-eye"></i>33</span>
+						<span class="download"><i class="fa fa-download"></i>26</span>
+					</div>
+					<div class="actions">
+						<a href="{{lang === 'ar' ? '' : '/' + lang}}/book/{{books[0].id}}" class="btn btn-primary btn-c btn-c-primary read-btn">{{data.read_btn}}</a>
+						<button class="btn btn-light btn-c btn-i btn-c-light download-btn">
+							<i class="fa fa-download"></i>
+						</button>
+						<button class="btn btn-light btn-c btn-i btn-c-light share-btn">
+							<i class="fa fa-share-alt"></i>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+@include('partials/books.edge')
+
+@include('partials/feature-section')
+
+
+<div class="gap"></div>
+
+@include('partials/footer')
+
+@endsection
+
+<!DOCTYPE html>
+
