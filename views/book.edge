@@ -1,5 +1,22 @@
 @layout('layouts/main')
 
+@section('styles')
+	<link rel="stylesheet" href="/assets/css/flipbook.css">
+@endsection
+
+@section('scripts')
+	<script src="/assets/js/jquery.min.js"></script>
+	<script src="/assets/js/flipbook/js/three.min.js"></script>
+	<script src="/assets/js/flipbook/js/pdf.worker.min.js"></script>
+	<script src="/assets/js/flipbook/js/pdf.min.js"></script>
+	<script src="/assets/js/flipbook/js/iscroll.min.js"></script>
+	<script src="/assets/js/flipbook/js/flipbook.pdfservice.min.js"></script>
+	{{--  <script src="/assets/js/flipbook/js/flipbook.swipe.min.js"></script>  --}}
+	{{--  <script src="/assets/js/flipbook/js/flipbook.webgl.min.js"></script>  --}}
+	<script>var base_url = '/assets/js/flipbook/'</script>
+	<script src="/assets/js/flipbook/js/flipbook.min.js"></script>
+@endsection
+
 @section('body')
 <div id="header">
 	@!component('components/navbar', {
@@ -8,6 +25,8 @@
 		data
 	})
 </div>
+
+<div id="pdf-container"></div>
 
 <div id="selected-books-section">
 	<div class="section-content">
@@ -34,7 +53,7 @@
 						<span class="download"><i class="fa fa-download"></i>{{book.downloads_count}}</span>
 					</div>
 					<div class="actions">
-						<button class="btn btn-primary btn-c btn-c-primary read-btn">{{data.read_btn}}</button>
+						<button data-pdf="{{book.pdf[lang]}}" class="btn btn-primary btn-c btn-c-primary read-btn">{{data.read_btn}}</button>
 						<button onclick="download(event , this)" class="btn btn-light btn-c btn-i btn-c-light download-btn">
 							<i class="fa fa-download"></i>
 						</button>

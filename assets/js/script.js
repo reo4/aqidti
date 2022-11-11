@@ -15,6 +15,13 @@ function closeDownload(e, el) {
 
 }
 
-function downloads(el) {
+const btn = $('[data-pdf]')
 
-}
+btn.on('click', function () {
+  $("#pdf-container").flipBook(
+    {
+      pdfUrl: btn.data('pdf'),
+      backgroundColor: "#EEF3F4",
+      layout: 3,
+    });
+})
