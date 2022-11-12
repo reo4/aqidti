@@ -5,7 +5,6 @@ const { config, engine } = require('express-edge')
 const path = require('path')
 const fs = require('fs');
 var cors = require('cors')
-var https = require('https');
 
 
 const router = express.Router({ mergeParams: true })
