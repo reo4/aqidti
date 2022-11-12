@@ -18,10 +18,13 @@ function closeDownload(e, el) {
 const btn = $('[data-pdf]')
 
 btn.on('click', function () {
-  $("#pdf-container").flipBook(
+  $("body").flipBook(
     {
       pdfUrl: btn.data('pdf'),
       backgroundColor: "#EEF3F4",
       layout: 3,
     });
+
+  $('.flipbook-main-wrapper').css('margin-top', '150px')
+  $('#books-section').css('margin-top', '150px')
 })

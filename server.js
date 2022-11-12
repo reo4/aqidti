@@ -4,13 +4,16 @@ const app = express()
 const { config, engine } = require('express-edge')
 const path = require('path')
 const fs = require('fs');
+var cors = require('cors')
 var https = require('https');
+
 
 const router = express.Router({ mergeParams: true })
 
+app.use(cors())
 config({ cache: process.env.NODE_ENV === 'production' })
-app.use(engine)
 app.set('views', `${__dirname}/views`)
+app.use(engine)
 
 const baseApiUrl = `https://aqidti.com/api`
 
@@ -54,21 +57,6 @@ router.get('/book/:id', ({ params }, res) => {
       const books = data.filter(i => i.id !== book.id)
       res.render('book', { book, books })
     })
-  })
-})
-
-router.get('/download/:book_id', ({ params }, res) => {
-  const lang = res.locals.lang
-  axios.get(`${baseApiUrl}/book/${params.book_id}`).then(({ data }) => {
-    const bookPath = path.join(__dirname, `books/${data.name[lang]}.pdf`)
-    const file = fs.createWriteStream(bookPath);
-    const request = https.get(data.pdf[lang], function (response) {
-      response.pipe(file);
-      file.on("finish", () => {
-        file.close();
-        res.download(bookPath)
-      });
-    });
   })
 })
 

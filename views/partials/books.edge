@@ -7,22 +7,25 @@
 		<div class="container">
 			<div class="row">
         @each(book in books)
+          @set('prefix' , lang === 'ar' ? '' : '/' + lang)
+          @set('url' , prefix + '/book/' + book.id)
+          
           <div class="col-xs-12 col-md-6 col-xxl-3">
             <div class="book">
               <a 
-                href="{{lang === 'ar' ? '' : '/' + lang}}/book/{{book.id}}"
+                href="{{url}}"
               class="book-cover"
               style="background-image:url({{book.image}})"
               >
               </a>
-              <a href="#" class="book-title"><h4>{{book.name[lang]}}</h4></a>
+              <a href="{{url}}" class="book-title"><h4>{{book.name[lang]}}</h4></a>
               <div class="book-author"><p>{{data.author}}: {{book.author[lang]}}</p></div>
               <div class="details">
                 <span class="viewed"><i class="fa fa-eye"></i>{{book.reads_count}}</span>
                 <span class="download"><i class="fa fa-download"></i>{{book.downloads_count}}</span>
               </div>
               <div class="actions">
-                <a href="{{lang === 'ar' ? '' : '/' + lang}}/book/{{book.id}}" class="btn btn-primary btn-c btn-c-primary read-btn">{{data.read_btn}}</a>
+                <a href="{{url}}" class="btn btn-primary btn-c btn-c-primary read-btn">{{data.read_btn}}</a>
                 <button class="btn btn-light btn-c btn-i btn-c-light download-btn">
                   <i class="fa fa-download"></i>
                 </button>

@@ -1,11 +1,10 @@
 @layout('layouts/main')
 
 @section('styles')
-	<link rel="stylesheet" href="/assets/css/flipbook.css">
+	<link rel="stylesheet" href="/assets/js/flipbook/css/flipbook.css">
 @endsection
 
 @section('scripts')
-	<script src="/assets/js/jquery.min.js"></script>
 	<script src="/assets/js/flipbook/js/three.min.js"></script>
 	<script src="/assets/js/flipbook/js/pdf.worker.min.js"></script>
 	<script src="/assets/js/flipbook/js/pdf.min.js"></script>
@@ -27,7 +26,6 @@
 </div>
 
 <div id="pdf-container"></div>
-
 <div id="selected-books-section">
 	<div class="section-content">
 		<div class="container">
@@ -42,7 +40,6 @@
 						</a>
 						<h2 class="download-title">{{book.name[lang]}}</h2>
 						<a href="{{book.pdf[lang]}}" target="_blank"  download class="download-pdf">{{data.download_format}} PDF</a>
-						{{--  <a href="/download/{{book.id}}" class="download-pdf">تنزيل بتنسيق PDF</a>  --}}
 					</div> 
 				</div>
 				<div class="col-xs-12 col-lg-6" js-parent-download>
