@@ -8,7 +8,7 @@
 			<div class="row">
         @each(book in books)
           @set('prefix' , lang === 'ar' ? '' : '/' + lang)
-          @set('url' , prefix + '/book/' + book.id)
+          @set('url' , prefix + '/book/' + book.id + '?category_id=' + book.category_id)
           
           <div class="col-xs-12 col-md-6 col-xxl-3">
             <div class="book">

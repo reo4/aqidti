@@ -60,7 +60,10 @@
 						<span class="download"><i class="fa fa-download"></i>26</span>
 					</div>
 					<div class="actions">
-						<a href="{{lang === 'ar' ? '' : '/' + lang}}/book/{{books[0].id}}" class="btn btn-primary btn-c btn-c-primary read-btn">{{data.read_btn}}</a>
+						@set('prefix' , lang === 'ar' ? '' : '/' + lang )
+						@set('url' , prefix + '/book/' + books[0].id + '?category_id=' + books[0].category_id )
+
+						<a href="{{url}}" class="btn btn-primary btn-c btn-c-primary read-btn">{{data.read_btn}}</a>
 						<button class="btn btn-light btn-c btn-i btn-c-light download-btn">
 							<i class="fa fa-download"></i>
 						</button>

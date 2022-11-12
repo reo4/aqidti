@@ -4,7 +4,7 @@ const app = express()
 const { config, engine } = require('express-edge')
 const path = require('path')
 const fs = require('fs');
-var cors = require('cors')
+const cors = require('cors')
 
 
 const router = express.Router({ mergeParams: true })
@@ -49,13 +49,11 @@ router.get('/', ({ params }, res) => {
   })
 })
 
-router.get('/book/:id', ({ params }, res) => {
-  axios.get(`${baseApiUrl}/book/${params.id}`).then(({ data }) => {
-    const book = data
-    axios.get(`${baseApiUrl}/books_by_category/${book.category_id}`).then(({ data }) => {
-      const books = data.filter(i => i.id !== book.id)
-      res.render('book', { book, books })
-    })
+router.get('/book/:id', ({ params, query }, res) => {
+  axios.get(`${baseApiUrl}/books_by_category/${query.category_id}`).then(({ data }) => {
+    const book = data.find(i => i.id == params.id)
+    const books = data.filter(i => i.id != params.id)
+    res.render('book', { book, books })
   })
 })
 
