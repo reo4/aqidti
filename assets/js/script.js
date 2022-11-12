@@ -26,5 +26,6 @@ btn.on('click', function () {
     });
 
   $('.flipbook-main-wrapper').css('margin-top', '150px')
-  $('#books-section').css('margin-top', '150px')
+  $('#books-section').css('margin-top', '800px')
+  $('#selected-books-section').hide()
 })
