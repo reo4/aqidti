@@ -50,7 +50,7 @@ router.get('/', ({ params }, res) => {
 })
 
 router.get('/book/:id', ({ params, query }, res) => {
-  axios.get(`${baseApiUrl}/books_by_category/${query.category_id}`).then(({ data }) => {
+  axios.get(`${baseApiUrl}/books_by_category/${query.category_id || 1}`).then(({ data }) => {
     const book = data.find(i => i.id == params.id)
     const books = data.filter(i => i.id != params.id)
     res.render('book', { book, books })
